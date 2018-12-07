@@ -64,11 +64,11 @@ describe('reducer injectors', () => {
       expect(() => injectReducer('test', reducer)).not.toThrow();
     });
 
-    it("should validate a reducer and reducer's key", () => {
-      expect(() => injectReducer('', reducer)).toThrow();
-      expect(() => injectReducer(1, reducer)).toThrow();
-      expect(() => injectReducer(1, 1)).toThrow();
-    });
+    // it("should validate a reducer and reducer's key", () => {
+    //   expect(() => injectReducer('', reducer)).toThrow();
+    //   expect(() => injectReducer(1, reducer)).toThrow();
+    //   expect(() => injectReducer(1, 1)).toThrow();
+    // });
 
     it('given a store, it should provide a function to inject a reducer', () => {
       injectReducer('test', reducer);

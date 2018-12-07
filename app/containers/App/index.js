@@ -7,21 +7,23 @@
  *
  */
 
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import HomePage from 'containers/HomePage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
-
 import GlobalStyle from '../../global-styles';
+
+const HomePage = lazy(() => import('containers/HomePage'));
+const NotFoundPage = lazy(() => import('containers/NotFoundPage'));
 
 export default function App() {
   return (
     <div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+      <Suspense fallback={<div>{null}</div>}>
+        <Switch>
+          <Route exact path="/" component={props => <HomePage {...props} />} />
+          <Route component={props => <NotFoundPage {...props} />} />
+        </Switch>
+      </Suspense>
       <GlobalStyle />
     </div>
   );
